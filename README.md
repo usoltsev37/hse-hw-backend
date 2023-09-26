@@ -1,7 +1,2 @@
-# HW1
+# hse-hw-backend
 
-Start up
-
-```commandline
-uvicorn app:app --port=5050 --reload
-```
