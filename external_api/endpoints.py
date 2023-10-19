@@ -5,12 +5,13 @@ import requests
 
 router = APIRouter()
 
-ip = "127.0.0.1"
-port_generate = "5048"
-port_summarize = "5049"
+IP = "127.0.0.1"
+PORT_GENERATE = "5048"
+PORT_SUMMARIZE = "5049"
 
 
 class GetGenerateSummarizeRequest(BaseModel):
+    """ Request for our service """
     prompt: str
 
 
@@ -22,11 +23,14 @@ async def generate_and_summarize(request: GetGenerateSummarizeRequest):  # noqa:
     :return: json with status_code and result text
     """
     data_generate = {"prompt": request.prompt}
-    response_generate = requests.get(f"http://{ip}:{port_generate}/generate", json=data_generate)
+    response_generate = requests.get(f"http://{IP}:{PORT_GENERATE}/generate", json=data_generate)
 
     print(response_generate.json())
 
     data_summarize = {"text": response_generate.json()["result"]}
-    response_summarize = requests.get(f"http://{ip}:{port_summarize}/summarize", json=data_summarize)
+    response_summarize = requests.get(
+        f"http://{IP}:{PORT_SUMMARIZE}/summarize",
+        json=data_summarize
+    )
 
     return {"status_code": 200, "result": response_summarize.json()["result"]}

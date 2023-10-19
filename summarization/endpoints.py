@@ -9,10 +9,16 @@ set_seed(0)
 MIN_LENGTH = 10
 MAX_LENGTH = 50
 
-summarization = pipeline("summarization", model='facebook/bart-large-cnn', min_length=MIN_LENGTH, max_length=MAX_LENGTH)
+summarization = pipeline(
+    "summarization",
+    model='facebook/bart-large-cnn',
+    min_length=MIN_LENGTH,
+    max_length=MAX_LENGTH
+)
 
 
 class GetSummarizeRequest(BaseModel):
+    """ Request for our service """
     text: str
 
 

@@ -11,6 +11,7 @@ MAX_LENGTH = 200
 
 
 class GetGenerateRequest(BaseModel):
+    """ Request for our service """
     prompt: str
 
 
